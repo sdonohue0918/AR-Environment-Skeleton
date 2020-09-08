@@ -1,7 +1,5 @@
 class Mood < ActiveRecord::Base
-    belongs_to :user, through: :song_mood
-    belongs_to :song, through: :song_mood
-
-
+    has_many :users, through: :song_moods
+    has_many :songs, through: :song_moods
 
 end
