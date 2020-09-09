@@ -10,18 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_182325) do
+ActiveRecord::Schema.define(version: 2020_09_09_151104) do
 
   create_table "moods", force: :cascade do |t|
     t.string "name"
-    t.float "valence"
     t.boolean "is_danceable"
     t.boolean "high_valence"
     t.boolean "low_valence"
-    t.boolean "is_loud"
     t.boolean "high_energy"
     t.boolean "low_energy"
-    t.boolean "up_tempo"
   end
 
   create_table "song_moods", force: :cascade do |t|
@@ -35,22 +32,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_182325) do
     t.string "song_uri"
     t.float "valence"
     t.float "dance_"
-    t.float "loudness"
     t.float "energy"
-    t.float "liveness"
-    t.float "tempo"
-  end
-
-  create_table "user_songs", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "song_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password"
-    t.string "mood"
-    t.string "user_uri"
   end
 
 end

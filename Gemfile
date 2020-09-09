@@ -7,8 +7,6 @@ gem 'require_all'
 gem 'sqlite3'
 gem 'pry'
 gem 'rspotify'
-gem 'tty'
-gem 'tty-prompt'
-
-#gem 'restclient'
-#gem 'json'
+# gem 'open-uri' builtinto RUBY
+#gem 'net/http' builtinto RUBY
+gem 'json'
