@@ -1,11 +1,17 @@
+require 'pry'
+
+Mood.destroy_all
+
+Song.destroy_all
+
+SongMood.destroy_all
 
 
 
 
 
 
-
-####seeds
+####seedss
 
 angry = Mood.create(name: "angry", is_danceable: false, high_valence: false, low_valence: true, high_energy: true, low_energy: false)
 

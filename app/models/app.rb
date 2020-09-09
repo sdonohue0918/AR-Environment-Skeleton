@@ -6,23 +6,23 @@ class App
 
 
     def run
-        "Welcome to the Spotify Mood App!"
-        sleep(5)
-        mood_select
+        puts "Welcome to the Spotify Mood App!"
+        # sleep()
+         mood_select
     end
     
-    private 
+    # private 
     
     
     def mood_select
-        "What kind of mood are you in? Happy? Sad? Angry? Chill?"
+        puts "What kind of mood are you in? Happy? Sad? Angry? Chill?"
         answer = gets.chomp.downcase
             if answer == "Happy"
-                happy_song = Song.create(name: nil, artist: nil, ) || Song.create
+                happy_song = Fetcher.new.happy_song
             if answer == "Sad"
-                sad_song = Song.create || Song.create
+                sad_song = Fetcher.new.sad_song
             if answer == "Angry"
-                angry_song = Song.create
+                angry_song = 
             if answer == "Chill"
             end
         end
@@ -30,4 +30,6 @@ class App
     end
     
     end
+
+    
 end
