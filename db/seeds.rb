@@ -28,7 +28,7 @@ song_mood1 = SongMood.create(song_id: song1.id, mood_id: happy.id)
 
 
 
-binding.pry
+
 
 
 

@@ -4,7 +4,7 @@ require 'pry'
 
 class Fetcher
     attr_reader :app, :mood, :song
-    binding.pry
+    
     @@all = []
 
     def initialize

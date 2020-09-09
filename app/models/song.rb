@@ -26,7 +26,7 @@ class Song < ActiveRecord::Base
         happy_valence = happy_track.audio_features.valence 
         happy_energy = happy_track.audio_features.energy 
 
-        
+
         
     end
     
@@ -92,4 +92,5 @@ class Song < ActiveRecord::Base
     
     
     end
+end
     
