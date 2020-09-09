@@ -16,14 +16,15 @@ class App
     
     def mood_select
         puts "What kind of mood are you in? Happy? Sad? Angry? Chill?"
-        answer = gets.chomp.downcase
+        answer = gets.chomp
             if answer == "Happy"
-                happy_song = Fetcher.new.happy_song
+                Song.new.get_happy_song
             if answer == "Sad"
-                sad_song = Fetcher.new.sad_song
+                Song.new.get_sad_song
             if answer == "Angry"
-                angry_song = 
+                Song.new.get_angry_song 
             if answer == "Chill"
+                Song.new.get_chill_song
             end
         end
     end
