@@ -8,3 +8,6 @@ class AddUserTable < ActiveRecord::Migration[6.0]
     end
   end
 end
+
+
+#delete table for user

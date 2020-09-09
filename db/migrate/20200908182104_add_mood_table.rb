@@ -9,7 +9,7 @@ class AddMoodTable < ActiveRecord::Migration[6.0]
       t.boolean :is_loud
       t.boolean :high_energy
       t.boolean :low_energy
-      t.boolean :up_tempo
+      t.boolean :up_tempo # get rid of this column on next migration
     end
   end
 end

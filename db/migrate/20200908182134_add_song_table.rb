@@ -6,7 +6,7 @@ class AddSongTable < ActiveRecord::Migration[6.0]
       t.string :song_uri
       t.float :valence
       t.float :dance_
-      t.float :loudness
+      # t.float :loudness-----will remove columns in next migration
       t.float :energy
       # t.float :liveness ----will remove columns in next migration because they are not helpful
       # t.float :tempo -----

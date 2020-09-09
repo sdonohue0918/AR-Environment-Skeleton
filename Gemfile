@@ -9,3 +9,6 @@ gem 'pry'
 gem 'rspotify'
 gem 'tty'
 gem 'tty-prompt'
+
+#gem 'restclient'
+#gem 'json'

@@ -6,3 +6,7 @@ class AddUserSongTable < ActiveRecord::Migration[6.0]
     end
   end
 end
+
+
+#delete table for UserSong
+
