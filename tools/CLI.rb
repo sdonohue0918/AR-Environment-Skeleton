@@ -1,8 +1,8 @@
 
 require 'tty-prompt'
 # require_relative '..app/models/user.rb'
- require 'song'
- require 'mood'
+#  require 'song'
+#  require 'mood'
 # require_relative '..app/models/song_mood.rb'
 # require_relative '..app/models/user_song.rb'
 
@@ -25,9 +25,8 @@ class Cli
 
             welcome == "lets get started"
             mood_ask = prompt.select("How are you feeling?", %w(happy mad sad))
-        end
             if mood_ask == "sad"
-            Song.create
+                Song.create
             end
         end
 
