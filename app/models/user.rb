@@ -5,31 +5,31 @@ class User < ActiveRecord::Base
     has_many :songs, through: :user_songs
 
 
-end
-
-def view_songs
-    self.songs
 
 
-end
+    def view_songs
+        Song.all
 
 
-def view_saved_song_names
-    self.song.name
+    end
 
 
-end
+    def view_saved_song_names
+        self.songs
+
+
+    end
 
 
 
-def change_username(name)
-    self.update(username: name)
+    def change_username(name)
+        self.update(username: name)
     
 
-end
+    end
 
-def view_saved_songs
-    self.user_songs
-
+    def delete_user
+        self.destroy!
+    end
 
 end

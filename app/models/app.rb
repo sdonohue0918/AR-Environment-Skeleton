@@ -5,10 +5,11 @@ class App
     def run
         puts "Welcome to the Spotify Mood App! If you haven't already, please login into your Spotify account via the web player!"
         # sleep()
+        Song.destroy_all
+        
         login_or_signup
     end
     
-    # private 
 
     def login_or_signup
         puts "Please enter your login information, or sign up in order to use the app. (login/sign-up)"
@@ -20,7 +21,11 @@ class App
         else answer == "sign-up"
             puts "please enter the username you would like to use"
             new_user = gets.chomp
-            User.find_or_create_by(username: new_user)
+            person = User.find_or_create_by(username: new_user)
+                puts User.where(username: new_user).find_by(id: person.id)
+                puts "REMEMBER YOUR ID...FOR IT IS PRECIOUS"
+                puts "REMEMBER YOUR ID...FOR IT IS PRECIOUS"
+                puts "REMEMBER YOUR ID...FOR IT IS PRECIOUS"
         end
 
         mood_select
@@ -33,17 +38,18 @@ class App
                 if answer == "Happy"
                     puts "Here! See if you like this"
                     Song.new.get_happy_song
-                elsif answer.downcase == "Sad"
+                elsif answer == "Sad"
                     puts "Here! See if you like this"
                     Song.new.get_sad_song
-                elsif answer.downcase == "Angry"
+                elsif answer == "Angry"
                     puts "Here! See if you like this"
                     Song.new.get_angry_song 
-                else answer.downcase == "Chill"
+                elsif answer == "Chill"
                     puts "Here! See if you like this"
                     Song.new.get_chill_song
                 end
-            options
+            
+                options
         
         
     end
@@ -63,11 +69,11 @@ class App
             elsif emb_answer == 'n'
                 puts "What would you like to do? (save, delete, exit)"
                     emb2_answer = gets.chomp
-                    if emb2_answer == exit
+                    if emb2_answer == "exit"
                         exit_app
-                    elsif emb2_answer == save
+                    elsif emb2_answer == "save"
                         save_song
-                    elsif emb2_answer == delete
+                    elsif emb2_answer == "delete"
                         delete_song
                     end
             end
@@ -98,27 +104,34 @@ class App
     
     
     def delete_song
-        puts "What is your username again?"
-            User.all.each do |user|
-                puts user[:name]
-                end
+        # puts "What is your username again?"
+        #     User.all.each do |user|
+        #         puts user[:name]
+        #         end
             
-            my_username = gets.chomp
+        #     my_username = gets.chomp
+        puts "Find your user-id"
+
+            User.all.each do |user|
+                puts user[:id]
+            end
+
+            my_id = gets.chomp
 
         puts "Choose from a list of songs which one you want to delete" 
             Song.all.each do |song|
-                puts song[:name]
-            end
-
+                puts "#{song[:name]}  #{song[:id]}".to_s
+                end
+            
             song_name = gets.chomp
         
-        UserSong.delete(user: User.find_by(username: my_username), song: Song.find_by(name: song_name))
+            UserSong.where(user_id: my_id).destroy_all
 
-    end
+        end
 
-    
     def exit_app
         puts "goodbye! Thanks for using our app!"
     end
+
 
 end

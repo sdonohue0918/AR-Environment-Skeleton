@@ -1,5 +1,6 @@
 
 require 'rspotify'
+
   
 
 
@@ -12,11 +13,12 @@ class Song < ActiveRecord::Base
     def get_happy_song
         RSpotify.authenticate("c9c915b881f6485dab1302b8155aa887", "3ebf2e591efc45f3bc9417525880e1d6")
          
-        recommendations = RSpotify::Recommendations.generate(limit: 5, seed_genres: ['progressive_trance', 'dance','dancehall', 'happy'], target_valence: 0.950, target_energy: 0.950, target_danceability: 0.950)
+        happy_recommendations = RSpotify::Recommendations.generate(limit: 5, seed_genres: ['progressive_trance', 'dance','dancehall', 'happy'], target_valence: 0.950, target_energy: 0.950, target_danceability: 0.950)
     
-        array = recommendations.tracks.first
+        array = happy_recommendations.tracks.first
         track = array.instance_variable_get('@uri')
         track_url = array.instance_variable_get('@external_urls')
+        
         track_with_uri = track.split("spotify:track:")
         track_with_uri.drop(1)
         final = track_with_uri[1]
@@ -48,9 +50,9 @@ class Song < ActiveRecord::Base
     def get_sad_song
         RSpotify.authenticate("c9c915b881f6485dab1302b8155aa887", "3ebf2e591efc45f3bc9417525880e1d6")
     
-        recommendations = RSpotify::Recommendations.generate(limit: 5, seed_genres: ['goth', 'grunge', 'sad', 'iranian'], target_valence: 0.350, target_energy: 0.250, target_danceability: 0.300)
+        sad_recommendations = RSpotify::Recommendations.generate(limit: 5, seed_genres: ['goth', 'grunge', 'sad', 'iranian'], target_valence: 0.350, target_energy: 0.250, target_danceability: 0.300)
     
-        array = recommendations.tracks.first
+        array = sad_recommendations.tracks.first
         track = array.instance_variable_get('@uri')
         track_url = array.instance_variable_get('@external_urls')
         track_with_uri = track.split("spotify:track:")
@@ -84,9 +86,9 @@ class Song < ActiveRecord::Base
     
     def get_angry_song
         RSpotify.authenticate("c9c915b881f6485dab1302b8155aa887", "3ebf2e591efc45f3bc9417525880e1d6")
-        recommendations = RSpotify::Recommendations.generate(limit: 5, seed_genres: ['metalcore', 'death-metal', 'industrial', 'heavy-metal', 'hardstyle'], target_valence: 0.150, target_energy: 0.850, target_danceability: 0.150)
+        angry_recommendations = RSpotify::Recommendations.generate(limit: 5, seed_genres: ['metalcore', 'death-metal', 'industrial', 'heavy-metal', 'hardstyle'], target_valence: 0.150, target_energy: 0.850, target_danceability: 0.150)
     
-        array = recommendations.tracks.first
+        array = angry_recommendations.tracks.first
         track = array.instance_variable_get('@uri')
         track_url = array.instance_variable_get('@external_urls')
         track_with_uri = track.split("spotify:track:")
@@ -118,9 +120,9 @@ class Song < ActiveRecord::Base
     
     def get_chill_song
         RSpotify.authenticate("c9c915b881f6485dab1302b8155aa887", "3ebf2e591efc45f3bc9417525880e1d6")
-        recommendations = RSpotify::Recommendations.generate(limit: 5, seed_genres: ['bossanova', 'chill', 'classical', 'ambient', 'minimal-techno'], target_valence: 0.750, target_energy: 0.350, target_danceability: 0.250)
+        chill_recommendations = RSpotify::Recommendations.generate(limit: 5, seed_genres: ['bossanova', 'chill', 'classical', 'ambient', 'minimal-techno'], target_valence: 0.750, target_energy: 0.350, target_danceability: 0.250)
     
-        array = recommendations.tracks.first
+        array = chill_recommendations.tracks.first
         track = array.instance_variable_get('@uri')
         track_url = array.instance_variable_get('@external_urls')
         track_with_uri = track.split("spotify:track:")
@@ -148,24 +150,24 @@ class Song < ActiveRecord::Base
         end
 
         p new_chill_song.name
-        p new_chill_song.chill_song_url
+        p new_chill_song.song_url
     end
 
 
 
 
-    def song_update_attribute(song)
-        song_change = Song.find_by(name: song)
-        song_change.update 
-        song_change.save
+    # def song_update_attribute(song)
+    #     song_change = Song.find_by(name: song)
+    #     song_change.update 
+    #     song_change.save
         
-    end
+    # end
 
 
-    def song_delete_from_db(song)
-        song_delete = Song.find_by(name: song)
-        song_delete.destroy
-    end
+    # def song_delete_from_db(song)
+    #     song_delete = Song.find_by(name: song)
+    #     song_delete.destroy
+    # end
 
 
 
