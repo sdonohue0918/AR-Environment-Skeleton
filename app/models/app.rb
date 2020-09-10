@@ -5,7 +5,6 @@ class App
     def run
         puts "Welcome to the Spotify Mood App! If you haven't already, please login into your Spotify account via the web player!"
         # sleep()
-        Song.destroy_all
         
         login_or_signup
     end
@@ -38,18 +37,26 @@ class App
                 if answer == "Happy"
                     puts "Here! See if you like this"
                     Song.new.get_happy_song
+                    options
+                    
                 elsif answer == "Sad"
                     puts "Here! See if you like this"
                     Song.new.get_sad_song
+                    options
+                    
                 elsif answer == "Angry"
                     puts "Here! See if you like this"
-                    Song.new.get_angry_song 
+                    Song.new.get_angry_song
+                    options
+                    
                 elsif answer == "Chill"
                     puts "Here! See if you like this"
                     Song.new.get_chill_song
+                    options
+                    
                 end
             
-                options
+                
         
         
     end
@@ -98,6 +105,8 @@ class App
             song_name = gets.chomp
             
             UserSong.create(user: User.find_by(username: my_username ), song: Song.find_by(name: song_name))
+            
+            options
     end
     
     
@@ -118,18 +127,19 @@ class App
 
             my_id = gets.chomp
 
-        puts "Choose from a list of songs which one you want to delete" 
+        puts "Choose from a list of songs which one you want to delete. Enter the id number listed to the right!" 
             Song.all.each do |song|
                 puts "#{song[:name]}  #{song[:id]}".to_s
                 end
             
-            song_name = gets.chomp
+            my_song_id = gets.chomp
         
-            UserSong.where(user_id: my_id).destroy_all
+            UserSong.where(user_id: my_id).where(song_id: my_song_id).destroy_all
 
         end
 
     def exit_app
+        Song.destroy_all
         puts "goodbye! Thanks for using our app!"
     end
 
