@@ -22,13 +22,13 @@ class Mood < ActiveRecord::Base
     def what_kind_of_mood(song)
 
         if song.mood.low_valence == true && song.mood.is_danceable == false && song.mood.low_energy == true
-            song.mood.name = sad.name
+            song.mood = sad.name
         elsif song.mood.low_valence == true && song.mood.is_danceable == false && song.mood.low_energy == false
-            song.mood.name = angry.name
+            song.mood = angry.name
         elsif song.mood.low_valence == false && song.mood.is_danceable == true && song.mood.low_energy == false
-            song.mood.name = happy.name
+            song.mood = happy.name
         else song.mood.low_valence == false && song.mood.is_danceable == true && song.mood.low_energy == true
-            song.mood.name = chill.name
+            song.mood = chill.name
         end
     end
 

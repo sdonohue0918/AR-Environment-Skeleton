@@ -36,10 +36,11 @@ class Song < ActiveRecord::Base
             t.dance_ = happy_dance
             t.energy = happy_energy
             t.song_url = happy_song_url
-            t.mood = nil
+            t.mood = "happy"
         end
 
         p new_happy_song.name
+        p new_happy_song.song_url
     end
     
     def get_sad_song
@@ -71,7 +72,7 @@ class Song < ActiveRecord::Base
             t.dance_ = sad_dance
             t.energy = sad_energy
             t.song_url = sad_song_url
-            t.mood = nil
+            t.mood = "sad"
         end
         
     end
@@ -104,7 +105,7 @@ class Song < ActiveRecord::Base
             t.dance_ = angry_dance
             t.energy = angry_energy
             t.song_url = angry_song_url
-            t.mood = nil
+            t.mood = "angry"
         end
     end
     
@@ -136,8 +137,23 @@ class Song < ActiveRecord::Base
             t.dance_ = chill_dance
             t.energy = chill_energy
             t.song_url = chill_song_url
-            t.mood = nil
+            t.mood = "chill"
         end
+    end
+
+
+
+    def song_update_attribute(song)
+        song_change = Song.find_by(name: song.name)
+        song_change.update
+        song_change.save
+        
+    end
+
+
+    def song_delete_from_db(song)
+        song_delete = Song.find_by(name: song.name)
+        song_delete.destroy
     end
 end
     
