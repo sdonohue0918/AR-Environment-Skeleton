@@ -10,8 +10,6 @@ class Song < ActiveRecord::Base
     def get_happy_song
         RSpotify.authenticate("c9c915b881f6485dab1302b8155aa887", "3ebf2e591efc45f3bc9417525880e1d6")
          
-        
-    
         recommendations = RSpotify::Recommendations.generate(limit: 5, seed_genres: ['progressive_trance', 'dance','dancehall', 'happy'], target_valence: 0.950, target_energy: 0.950, target_danceability: 0.950)
     
         array = recommendations.tracks.first
@@ -75,11 +73,12 @@ class Song < ActiveRecord::Base
             t.song_url = sad_song_url
             t.mood = nil
         end
+        
     end
     
     def get_angry_song
         RSpotify.authenticate("c9c915b881f6485dab1302b8155aa887", "3ebf2e591efc45f3bc9417525880e1d6")
-        recommendations = RSpotify::Recommendations.generate(limit: 6, seed_genres: ['metalcore', 'death-metal', 'drum-and-bass', 'industrial', 'heavy-metal', 'hardstyle'], target_valence: 0.150, target_energy: 0.850, target_danceability: 0.150)
+        recommendations = RSpotify::Recommendations.generate(limit: 5, seed_genres: ['metalcore', 'death-metal', 'industrial', 'heavy-metal', 'hardstyle'], target_valence: 0.150, target_energy: 0.850, target_danceability: 0.150)
     
         array = recommendations.tracks.first
         track = array.instance_variable_get('@uri')
@@ -111,7 +110,7 @@ class Song < ActiveRecord::Base
     
     def get_chill_song
         RSpotify.authenticate("c9c915b881f6485dab1302b8155aa887", "3ebf2e591efc45f3bc9417525880e1d6")
-        recommendations = RSpotify::Recommendations.generate(limit: 5, seed_genres: ['bossanova', 'chill', 'classical', 'ambient', 'minimal-techno', 'new-age'], target_valence: 0.750, target_energy: 0.350, target_danceability: 0.250)
+        recommendations = RSpotify::Recommendations.generate(limit: 5, seed_genres: ['bossanova', 'chill', 'classical', 'ambient', 'minimal-techno'], target_valence: 0.750, target_energy: 0.350, target_danceability: 0.250)
     
         array = recommendations.tracks.first
         track = array.instance_variable_get('@uri')
