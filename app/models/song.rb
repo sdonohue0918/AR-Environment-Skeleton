@@ -1,10 +1,12 @@
+
 require 'rspotify'
   
 
 
 class Song < ActiveRecord::Base
-    
-    has_many :moods, through: :song_moods
+
+    has_many :users
+    has_many :users, through: :user_songs
 
     
     def get_happy_song
@@ -74,6 +76,9 @@ class Song < ActiveRecord::Base
             t.song_url = sad_song_url
             t.mood = "sad"
         end
+
+        p new_sad_song.name
+        p new_sad_song.song_url
         
     end
     
@@ -107,6 +112,8 @@ class Song < ActiveRecord::Base
             t.song_url = angry_song_url
             t.mood = "angry"
         end
+        p new_angry_song.name
+        p new_angry_song.song_url
     end
     
     def get_chill_song
@@ -127,7 +134,7 @@ class Song < ActiveRecord::Base
         chill_dance = chill_track.audio_features.danceability 
         chill_valence = chill_track.audio_features.valence 
         chill_energy = chill_track.audio_features.energy
-        chill_energy = track_url.values
+        chill_song_url = track_url.values
 
         new_chill_song = Song.create do |t|
             t.name = chill_song_name
@@ -139,21 +146,28 @@ class Song < ActiveRecord::Base
             t.song_url = chill_song_url
             t.mood = "chill"
         end
+
+        p new_chill_song.name
+        p new_chill_song.chill_song_url
     end
 
 
 
+
     def song_update_attribute(song)
-        song_change = Song.find_by(name: song.name)
-        song_change.update
+        song_change = Song.find_by(name: song)
+        song_change.update 
         song_change.save
         
     end
 
 
     def song_delete_from_db(song)
-        song_delete = Song.find_by(name: song.name)
+        song_delete = Song.find_by(name: song)
         song_delete.destroy
     end
+
+
+
 end
     

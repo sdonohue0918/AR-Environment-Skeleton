@@ -10,21 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_214037) do
-
-  create_table "moods", force: :cascade do |t|
-    t.string "name"
-    t.boolean "is_danceable"
-    t.boolean "high_valence"
-    t.boolean "low_valence"
-    t.boolean "high_energy"
-    t.boolean "low_energy"
-  end
-
-  create_table "song_moods", force: :cascade do |t|
-    t.integer "song_id"
-    t.integer "mood_id"
-  end
+ActiveRecord::Schema.define(version: 2020_09_10_151330) do
 
   create_table "songs", force: :cascade do |t|
     t.string "name"
@@ -35,6 +21,16 @@ ActiveRecord::Schema.define(version: 2020_09_09_214037) do
     t.float "energy"
     t.string "mood"
     t.string "song_url"
+  end
+
+  create_table "user_songs", force: :cascade do |t|
+    t.string "user"
+    t.string "song"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password"
   end
 
 end
