@@ -22,18 +22,14 @@ end
 
 
 
-
 def change_username(name)
     self.update(username: name)
     
-
-
 
 end
 
 def view_saved_songs
     self.user_songs
-
 
 
 end
